@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 05:26:47 by hateisse          #+#    #+#             */
-/*   Updated: 2022/11/08 13:32:28 by hateisse         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:13:03 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*res;
 	size_t	len;
 
+	if (!s1 && s2)
+		return (ft_strdup(s2));
+	if (s1 && !s2)
+		return (ft_strdup(s1));
 	len = ft_strlen(s1) + ft_strlen(s2);
 	res = ft_calloc(len + 1, sizeof(*res));
 	if (!res)

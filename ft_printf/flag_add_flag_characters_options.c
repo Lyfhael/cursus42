@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 18:30:14 by hateisse          #+#    #+#             */
-/*   Updated: 2022/11/08 15:31:55 by hateisse         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:57:11 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ char	*_pf_add_plus_option(t_flag *flag, char **s)
 {
 	void	*addr;
 
-	if (flag->plus == -1 || flag->zero_value == 1)
+	if (flag->plus == -1 || (flag->zero_value == 1 && !**s))
 		return (*s);
 	addr = *s;
-	if (ft_strchr("idp", flag->identifier))
+	if ((ft_strchr("id", flag->identifier) && flag->is_positive)
+		|| flag->identifier == 'p')
 	{
 		if (flag->is_positive)
 			*s = ft_strjoin("+", *s);
