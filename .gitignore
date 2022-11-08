@@ -4,3 +4,4 @@ get_next_line/gnlTester
 libft/libftTester
 project_libft/libftTester
 project_libft_backup/libftTester
+*.o

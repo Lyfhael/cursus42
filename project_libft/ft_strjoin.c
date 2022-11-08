@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 03:18:14 by hateisse          #+#    #+#             */
-/*   Updated: 2022/11/02 03:28:10 by hateisse         ###   ########.fr       */
+/*   Created: 2022/10/30 05:26:47 by hateisse          #+#    #+#             */
+/*   Updated: 2022/11/08 13:42:42 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-static char	*ft_strcat(char *dest, const char *src)
+char	*ft_strcat(char *dest, const char *src)
 {
 	size_t	dest_len;
 
@@ -29,10 +29,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*res;
 	size_t	len;
 
-	if (!s1 && s2)
-		return (ft_strdup(s2));
-	else if (s1 && !s2)
-		return (ft_strdup(s1));
 	len = ft_strlen(s1) + ft_strlen(s2);
 	res = ft_calloc(len + 1, sizeof(*res));
 	if (!res)

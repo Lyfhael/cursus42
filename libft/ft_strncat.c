@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 05:27:09 by hateisse          #+#    #+#             */
-/*   Updated: 2022/10/30 05:27:10 by hateisse         ###   ########.fr       */
+/*   Updated: 2022/11/08 13:36:15 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strncat(char *dest, const char *src, size_t n)
 
 	dest_len = ft_strlen(dest);
 	i = 0;
-	while (i < n)
+	while (i < n && src[i])
 		dest[dest_len++] = src[i++];
 	dest[dest_len] = '\0';
 	return (dest);
