@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 12:39:31 by hateisse          #+#    #+#             */
-/*   Updated: 2022/10/31 16:04:03 by hateisse         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:30:47 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strncpy(char *dest, const char *src, size_t n)
 	return (dest);
 }
 
-void	ft_lstfree(t_gnl **buflist, int fd)
+void	gnl_lstfree(t_gnl **buflist, int fd)
 {
 	t_gnl	*current;
 	t_gnl	*next;
@@ -52,7 +52,7 @@ void	ft_lstfree(t_gnl **buflist, int fd)
 	}
 }
 
-t_gnl	*ft_lstnew(int fd)
+t_gnl	*gnl_lstnew(int fd)
 {
 	t_gnl	*new;
 
@@ -64,7 +64,7 @@ t_gnl	*ft_lstnew(int fd)
 	new->localbuf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!new->localbuf || !new->buf)
 	{
-		ft_lstfree(&new, fd);
+		gnl_lstfree(&new, fd);
 		return (NULL);
 	}
 	*(new->buf) = '\0';
@@ -74,7 +74,7 @@ t_gnl	*ft_lstnew(int fd)
 	return (new);
 }
 
-t_gnl	*ft_lstadd_back(t_gnl **lst, t_gnl *new)
+t_gnl	*gnl_lstadd_back(t_gnl **lst, t_gnl *new)
 {
 	t_gnl	*tmp;
 
@@ -95,7 +95,7 @@ t_gnl	*ft_lstadd_back(t_gnl **lst, t_gnl *new)
 	return (*lst);
 }
 
-t_gnl	*ft_lstsrch(t_gnl *lst, int fd)
+t_gnl	*gnl_lstsrch(t_gnl *lst, int fd)
 {
 	while (lst)
 	{

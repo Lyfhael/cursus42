@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 07:45:37 by hateisse          #+#    #+#             */
-/*   Updated: 2022/11/04 15:31:12 by hateisse         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:30:28 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ typedef struct s_gnl
 
 char	*ft_strncpy(char *dest, const char *src, size_t n);
 
-t_gnl	*ft_lstnew(int fd);
-t_gnl	*ft_lstadd_back(t_gnl **lst, t_gnl *new);
-void	ft_lstfree(t_gnl **buflist, int fd);
-t_gnl	*ft_lstsrch(t_gnl *lst, int fd);
+t_gnl	*gnl_lstnew(int fd);
+t_gnl	*gnl_lstadd_back(t_gnl **lst, t_gnl *new);
+void	gnl_lstfree(t_gnl **buflist, int fd);
+t_gnl	*gnl_lstsrch(t_gnl *lst, int fd);
 
 short	gnl_check_buf(char **line, char *localbuf, t_gnl *buf_fd);
 short	gnl_precheck(char **line, t_gnl **buflist, int fd);
