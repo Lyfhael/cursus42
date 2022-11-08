@@ -98,6 +98,10 @@ $(NAME): $(OBJS)
 bonus: $(BONUS_OBJS)
 	$(AR) $(NAME) $(BONUS_OBJS)
 
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)
+	gcc -nostartfiles -shared -o libft.so $(OBJ)
+
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(INCLUDES) -I$(GNL_INCLUDES) -c $< -o $@
 
