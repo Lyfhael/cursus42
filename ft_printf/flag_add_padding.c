@@ -6,21 +6,37 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 08:32:20 by hateisse          #+#    #+#             */
-/*   Updated: 2022/11/07 09:02:16 by hateisse         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:54:25 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
+char	*_pf_add_padding_build_signed_int(char **s, char *padding)
+{
+	char	*sign_prefix;
+
+	if (*padding == '0')
+	{
+		sign_prefix = ft_calloc(2, 1);
+		if (!sign_prefix)
+			return (NULL);
+		*sign_prefix = **s;
+		*s = ft_strsjoin(3, sign_prefix, padding, *s + 1);
+		free(sign_prefix);
+	}
+	else
+		*s = ft_strjoin(padding, *s);
+	return (*s);
+}
+
 char	*_pf_add_padding_build_hex_shape(t_flag *flag, char **s, char *padding)
 {
 	size_t	hex_prefix_i;
 	char	*hex_prefix;
 
-	if (flag->minus != -1)
-		*s = ft_strjoin(*s, padding);
-	else if (flag->zero != -1 && flag->precision == -1)
+	if (flag->zero != -1 && flag->precision == -1)
 	{
 		if (flag->identifier == 'X')
 			hex_prefix_i = ft_strrchr(*s, 'X') - *s + 1;
@@ -30,6 +46,7 @@ char	*_pf_add_padding_build_hex_shape(t_flag *flag, char **s, char *padding)
 		if (!hex_prefix)
 			return (NULL);
 		*s = ft_strsjoin(3, hex_prefix, padding, *s + hex_prefix_i);
+		free(hex_prefix);
 	}
 	else
 		*s = ft_strjoin(padding, *s);
@@ -38,13 +55,19 @@ char	*_pf_add_padding_build_hex_shape(t_flag *flag, char **s, char *padding)
 
 char	*_pf_add_padding_build(t_flag *flag, char **s, char *padding)
 {
-	if (_pf_is_hex_shape(flag))
+
+	if (flag->minus != -1)
+		*s = ft_strjoin(*s, padding);
+	else if (_pf_is_hex_shape(flag))
 	{
 		if (!_pf_add_padding_build_hex_shape(flag, s, padding))
 			*s = NULL;
 	}
-	else if (flag->minus != -1)
-		*s = ft_strjoin(*s, padding);
+	else if (ft_strchr("di", flag->identifier) && ft_strchr(" +-", **s))
+	{
+		if (!_pf_add_padding_build_signed_int(s, padding))
+			*s = NULL;
+	}
 	else
 		*s = ft_strjoin(padding, *s);
 	free(padding);

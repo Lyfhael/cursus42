@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 05:28:13 by hateisse          #+#    #+#             */
-/*   Updated: 2022/11/07 03:06:20 by hateisse         ###   ########.fr       */
+/*   Updated: 2022/11/08 07:13:49 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strsjoin(unsigned int count, ...);
 char	*ft_strtrim(char const *s1, char const *set);
+char	*ft_strrtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_utoa(unsigned int n);

@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 10:47:47 by hateisse          #+#    #+#             */
-/*   Updated: 2022/10/31 16:03:51 by hateisse         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:30:10 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ short	gnl_precheck(char **line, t_gnl **buflist, int fd)
 
 	if (fd < 0)
 		return (-1);
-	if (!ft_lstsrch(*buflist, fd))
+	if (!gnl_lstsrch(*buflist, fd))
 	{
-		if (!ft_lstadd_back(buflist, ft_lstnew(fd)))
+		if (!gnl_lstadd_back(buflist, gnl_lstnew(fd)))
 			return (-2);
 	}
 	else
 	{
-		buf_fd = ft_lstsrch(*buflist, fd);
+		buf_fd = gnl_lstsrch(*buflist, fd);
 		check_ret = gnl_check_buf(line, buf_fd->localbuf, buf_fd);
 		if (check_ret < 0)
 			return (-3);
@@ -124,15 +124,15 @@ char	*get_next_line(int fd)
 	line = NULL;
 	if (gnl_precheck(&line, &buflist, fd) < 0)
 	{
-		ft_lstfree(&buflist, fd);
+		gnl_lstfree(&buflist, fd);
 		return (NULL);
 	}
 	else if (line)
 		return (line);
-	read_ret = gnl_readfile(&line, ft_lstsrch(buflist, fd), fd);
+	read_ret = gnl_readfile(&line, gnl_lstsrch(buflist, fd), fd);
 	if (read_ret < 1)
 	{
-		ft_lstfree(&buflist, fd);
+		gnl_lstfree(&buflist, fd);
 		if (read_ret < 0)
 			return (NULL);
 	}

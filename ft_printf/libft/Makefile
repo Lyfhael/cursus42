@@ -51,6 +51,7 @@ SRCS =	get_next_line/get_next_line.c \
 	ft_strdup.c \
 	ft_substr.c \
 	ft_strtrim.c \
+	ft_strrtrim.c \
 	ft_atoi.c \
 	ft_strtol.c \
 	ft_striteri.c \
@@ -97,6 +98,10 @@ $(NAME): $(OBJS)
 bonus: $(BONUS_OBJS)
 	$(AR) $(NAME) $(BONUS_OBJS)
 
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(BONUS_SRCS)
+	gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)
+
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(INCLUDES) -I$(GNL_INCLUDES) -c $< -o $@
 
@@ -104,7 +109,7 @@ clean:
 	$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(NAME:.a=.so)
 
 re: clean all
 

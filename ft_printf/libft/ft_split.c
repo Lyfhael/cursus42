@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 05:26:11 by hateisse          #+#    #+#             */
-/*   Updated: 2022/10/30 05:26:12 by hateisse         ###   ########.fr       */
+/*   Updated: 2022/11/08 07:37:44 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ static size_t	count_words(char const *s, char c)
 	return (tabs);
 }
 
-static char	*copy_until_then_advance(char **res, char **s, char c)
+static char	*copy_until_then_advance(char **res, size_t x, char **s, char c)
 {
 	size_t	len;
 
 	len = ft_strchrnul(*s, c) - *s;
-	*res = ft_calloc(len + 1, sizeof(**res));
-	if (!*res)
+	res[x] = ft_calloc(len + 1, sizeof(**res));
+	if (!res[x])
 	{
 		ft_strsfree(res);
 		return (NULL);
 	}
-	ft_strlcpy(*res, *s, len + 1);
+	ft_strlcpy(res[x], *s, len + 1);
 	*s += len;
 	return (*s);
 }
@@ -54,9 +54,11 @@ char	**ft_split(char const *s, char c)
 {
 	char	**res;
 	size_t	words;
+	size_t	x;
 
 	words = count_words(s, c);
 	res = ft_calloc(words + 1, sizeof(*res));
+	x = 0;
 	if (!res)
 		return (NULL);
 	while (*s)
@@ -65,10 +67,9 @@ char	**ft_split(char const *s, char c)
 			s++;
 		else
 		{
-			copy_until_then_advance(res++, (char **)&s, c);
-			if (!s)
+			if (!copy_until_then_advance(res, x++, (char **)&s, c))
 				return (NULL);
 		}
 	}
-	return (res - words);
+	return (res);
 }

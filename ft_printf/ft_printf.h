@@ -6,13 +6,13 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:19:37 by hateisse          #+#    #+#             */
-/*   Updated: 2022/11/07 08:33:05 by hateisse         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:06:28 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 
-# define FT_PRINT_H
+# define FT_PRINTF_H
 # define NO_ALLOC_MODE 0
 # define ALLOC_MODE 1
 # include <stdarg.h>
@@ -46,6 +46,7 @@ char		*_pf_add_plus_option(t_flag *flag, char **s);
 char		*_pf_add_blank_option(t_flag *flag, char **s);
 char		*_pf_add_flag_characters_options(t_flag *flag, char **s);
 char		*_pf_add_padding_build_hex_shape(t_flag *flag, char **s, char *padding);
+char		*_pf_add_padding_build_signed_int(char **s, char *padding);
 char		*_pf_add_padding_build(t_flag *flag, char **s, char *padding);
 char		*_pf_build_padding(t_flag *flag, char *s, char **padding);
 char		*_pf_add_padding(t_flag *flag, char **s);

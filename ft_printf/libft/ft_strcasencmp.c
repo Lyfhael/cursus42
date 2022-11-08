@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 05:27:13 by hateisse          #+#    #+#             */
-/*   Updated: 2022/11/06 12:03:46 by hateisse         ###   ########.fr       */
+/*   Updated: 2022/11/08 07:38:15 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	ft_strcasencmp(const char *s1, const char *s2, size_t n)
 {
 	size_t				i;
-	unsigned char	*ucs1;
-	unsigned char	*ucs2;
+	unsigned char		*ucs1;
+	unsigned char		*ucs2;
 
 	ucs1 = (unsigned char *)s1;
 	ucs2 = (unsigned char *)s2;
