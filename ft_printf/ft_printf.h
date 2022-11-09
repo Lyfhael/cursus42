@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 17:19:37 by hateisse          #+#    #+#             */
-/*   Updated: 2022/11/08 15:06:28 by hateisse         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:36:45 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_flag
 	const char	*flag_end_index;
 }	t_flag;
 
-int			ft_printf(const char *, ...);;
+int			ft_printf(const char *, ...);
 char		*_pf_add_hashtag_option(t_flag *flag, char **s);
 char		*_pf_add_plus_option(t_flag *flag, char **s);
 char		*_pf_add_blank_option(t_flag *flag, char **s);
