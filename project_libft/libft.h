@@ -6,14 +6,13 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 05:28:13 by hateisse          #+#    #+#             */
-/*   Updated: 2022/11/02 03:25:51 by hateisse         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:48:07 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 
 # define LIBFT_H
-# define LOG_SIZE_T sizeof(size_t) * 8
 # include <stddef.h>
 
 typedef struct s_list
