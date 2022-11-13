@@ -27,9 +27,8 @@ int	main(int argc, char **argv)
 	char			*test;
 
 	n = 48;
-	test = ft_strdup("test '\% o' %s\n");
-	r1 = ft_printf("test: %+s'\n", -1);
-	r2 = printf("test: %+s\n", -1);
+	r1 = ft_printf("test: %s\n", test - 2);
+	r2 = printf("test: %s\n", test - 2);
 	printf("%d\n%d\n", r1, r2);
 	free(test);
 	//printf("X:'%05x'\n", n);
