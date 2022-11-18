@@ -6,11 +6,10 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 06:30:57 by hateisse          #+#    #+#             */
-/*   Updated: 2022/11/07 03:06:31 by hateisse         ###   ########.fr       */
+/*   Updated: 2022/11/15 21:09:08 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <errno.h>
 #include <limits.h>
 #include "libft.h"
 
@@ -31,10 +30,7 @@ static int	check_base(char **nptr, int *base)
 	if (*base == 0)
 		*base = detect_base(*nptr);
 	else if (*base < 2 || *base > 36)
-	{
-		errno = EINVAL;
 		return (-1);
-	}
 	if (*base == 16 && (!ft_strncmp(*nptr, "0x", 2)
 			|| !ft_strncmp(*nptr, "0X", 2)))
 		*nptr += 2;
@@ -67,13 +63,12 @@ static int	check_limits(long *n, short sign, int base)
 		log++;
 	}
 	log *= base;
-	if (log == LOG_LONG && sign == 1)
+	if (log == sizeof(long) * 8 && sign == 1)
 		*n = LONG_MAX;
-	else if (log == LOG_LONG && *n != LONG_MIN && sign == -1)
+	else if (log == sizeof(long) * 8 && *n != LONG_MIN && sign == -1)
 		*n = LONG_MIN;
 	else
 		return (0);
-	errno = ERANGE;
 	return (-1);
 }
 
