@@ -1,6 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int	main(void)
 {
-	printf("%wwz");
+	char	*s = malloc(5);
+
+	printf("%p\n", s);
 }
