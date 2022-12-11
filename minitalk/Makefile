@@ -1,116 +1,43 @@
-NAME = libft.a
+# NAME = minitalk
 
-CC = gcc
+# CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror
 
-AR = ar rcs
+# AR = ar rcs
 
-RM = rm -f
+# RM = rm -f
 
-SRCS =	get_next_line/get_next_line.c \
-	get_next_line/get_next_line_utils.c \
-	ft_memset.c \
-	ft_bzero.c \
-	ft_memcpy.c \
-	ft_memmove.c \
-	ft_memchr.c \
-	ft_memcmp.c \
-	ft_strcmp.c \
-	ft_strncmp.c \
-	ft_strcasencmp.c \
-	ft_strcasecmp.c \
-	ft_strsfree.c \
-	ft_strlen.c \
-	ft_strcat.c \
-	ft_strcpy.c \
-	ft_strncat.c \
-	ft_strchr.c \
-	ft_strnchr.c \
-	ft_strrchr.c \
-	ft_strchrnul.c \
-	ft_strstr.c \
-	ft_strcasestr.c \
-	ft_strnstr.c \
-	ft_intlen.c \
-	ft_ulonglen.c \
-	ft_uintlen.c \
-	ft_putstr.c \
-	ft_putnstr.c \
-	ft_isalpha.c \
-	ft_islower.c \
-	ft_isupper.c \
-	ft_isdigit.c \
-	ft_isalnum.c \
-	ft_isascii.c \
-	ft_isprint.c \
-	ft_toupper.c \
-	ft_tolower.c \
-	ft_strtoupper.c \
-	ft_calloc.c \
-	ft_strdup.c \
-	ft_substr.c \
-	ft_strtrim.c \
-	ft_strrtrim.c \
-	ft_atoi.c \
-	ft_strtol.c \
-	ft_striteri.c \
-	ft_itoa.c \
-	ft_utoa.c \
-	ft_ctos.c \
-	ft_ultobase.c \
-	ft_strmapi.c \
-	ft_putchar_fd.c \
-	ft_putstr_fd.c \
-	ft_putendl_fd.c \
-	ft_putnbr_fd.c \
-	ft_strlcpy.c \
-	ft_split.c \
-	ft_strjoin.c \
-	ft_strsjoin.c \
-	ft_strlcat.c
+# SRCS_DIR = ./srcs/
 
-BONUS_SRCS =	ft_lstnew.c \
-		ft_lstadd_front.c \
-		ft_lstadd_back.c \
-		ft_lstdelone.c \
-		ft_lstclear.c \
-		ft_lstsize.c \
-		ft_lstlast.c \
-		ft_lstiter.c \
-		ft_lstmap.c
+# SRCS_F = server/main.c
 
-SRCS_DIR = ./
+# SRCS = $(addprefix $(SRCS_DIR), $(SRCS_F))
 
-INCLUDES = ./
+# INCLUDES = ./includes/
 
-GNL_INCLUDES = get_next_line/
+# OBJS = $(SRCS:.c=.o)
 
-OBJS = $(SRCS:.c=.o)
+# all: $(NAME)
 
-BONUS_OBJS = $(BONUS_SRCS:.c=.o)
+# $(NAME): $(OBJS)
+# 	$(CC) $(OBJS) -o $(NAME)
 
-all: $(NAME)
+# %.o: %.c
+# 	$(CC) $(CFLAGS) -I$(INCLUDES) -I$(GNL_INCLUDES) -c $< -o $@
 
-$(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
+# clean:
+# 	$(RM) $(OBJS) $(BONUS_OBJS)
 
-bonus: $(BONUS_OBJS)
-	$(AR) $(NAME) $(BONUS_OBJS)
+# fclean: clean
+# 	$(RM) $(NAME) $(NAME:.a=.so)
 
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(BONUS_SRCS)
-	gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)
+# re: clean all
 
-%.o: %.c
-	$(CC) $(CFLAGS) -I$(INCLUDES) -I$(GNL_INCLUDES) -c $< -o $@
+# .PHONY: bonus all clean fclean re
 
-clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
 
-fclean: clean
-	$(RM) $(NAME) $(NAME:.a=.so)
+server:
+	gcc -Wall -Werror -Wextra main.c -o server
 
-re: clean all
-
-.PHONY: bonus all clean fclean re
+client:
