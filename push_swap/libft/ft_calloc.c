@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:32:01 by hateisse          #+#    #+#             */
-/*   Updated: 2022/12/11 17:39:25 by hateisse         ###   ########.fr       */
+/*   Created: 2022/10/30 05:39:03 by hateisse          #+#    #+#             */
+/*   Updated: 2022/11/13 16:29:32 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
+#include <stdlib.h>
+#include <stdint.h>
 
-void    ft_print(int signal)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-    printf("OK %d", signal);
-}
+	char	*addr;
 
-void    display_pid(void)
-{
-    printf("%d\n", getpid());
-}
-
-void handle_sig(int signal)
-{
-	printf("OK %d", signal);
-}
-int main(void)
-{
-	struct sigaction	sig;
-
-	sig.sa_handler = &handle_sig;
-	sigfillset(&sig.sa_mask);
-	sig.sa_flags = 0;
-	sigaction(SIGINT, &sig, NULL);
-	sleep(60);
-	return (0);
+	if (!nmemb || !size)
+		return (NULL);
+	if (nmemb > SIZE_MAX / size)
+		return (NULL);
+	addr = malloc(size * nmemb);
+	if (!addr)
+		return (NULL);
+	ft_bzero(addr, size * nmemb);
+	return (addr);
 }

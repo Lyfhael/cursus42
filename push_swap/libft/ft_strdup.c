@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:32:01 by hateisse          #+#    #+#             */
-/*   Updated: 2022/12/11 17:39:25 by hateisse         ###   ########.fr       */
+/*   Created: 2022/10/30 05:26:37 by hateisse          #+#    #+#             */
+/*   Updated: 2022/10/30 05:26:38 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
+#include <stdlib.h>
 
-void    ft_print(int signal)
+char	*ft_strdup(const char *s)
 {
-    printf("OK %d", signal);
-}
+	size_t	i;
+	char	*res;
 
-void    display_pid(void)
-{
-    printf("%d\n", getpid());
-}
-
-void handle_sig(int signal)
-{
-	printf("OK %d", signal);
-}
-int main(void)
-{
-	struct sigaction	sig;
-
-	sig.sa_handler = &handle_sig;
-	sigfillset(&sig.sa_mask);
-	sig.sa_flags = 0;
-	sigaction(SIGINT, &sig, NULL);
-	sleep(60);
-	return (0);
+	res = ft_calloc(ft_strlen(s) + 1, sizeof(*res));
+	if (!res)
+		return (NULL);
+	i = 0;
+	while (*s)
+		res[i++] = *s++;
+	return (res);
 }

@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:32:01 by hateisse          #+#    #+#             */
-/*   Updated: 2022/12/11 17:39:25 by hateisse         ###   ########.fr       */
+/*   Created: 2022/10/30 05:25:12 by hateisse          #+#    #+#             */
+/*   Updated: 2022/11/04 16:30:29 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
+#include <stdlib.h>
 
-void    ft_print(int signal)
+static void	copy_uint_to_str(char *s, unsigned int n)
 {
-    printf("OK %d", signal);
+	if (n > 9)
+		copy_uint_to_str(s - 1, n / 10);
+	*s = (n % 10) + 48;
 }
 
-void    display_pid(void)
+char	*ft_utoa(unsigned int n)
 {
-    printf("%d\n", getpid());
-}
+	size_t	len;
+	char	*res;
 
-void handle_sig(int signal)
-{
-	printf("OK %d", signal);
-}
-int main(void)
-{
-	struct sigaction	sig;
-
-	sig.sa_handler = &handle_sig;
-	sigfillset(&sig.sa_mask);
-	sig.sa_flags = 0;
-	sigaction(SIGINT, &sig, NULL);
-	sleep(60);
-	return (0);
+	len = ft_uintlen(n);
+	res = ft_calloc(len + 1, sizeof(*res));
+	if (!res)
+		return (NULL);
+	copy_uint_to_str(&res[len - 1], n);
+	return (res);
 }

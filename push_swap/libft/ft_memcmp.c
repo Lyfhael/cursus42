@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:32:01 by hateisse          #+#    #+#             */
-/*   Updated: 2022/12/11 17:39:25 by hateisse         ###   ########.fr       */
+/*   Created: 2022/10/30 05:36:19 by hateisse          #+#    #+#             */
+/*   Updated: 2022/10/30 05:36:20 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-void    ft_print(int signal)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-    printf("OK %d", signal);
-}
+	size_t				i;
+	const unsigned char	*s1_addr;
+	const unsigned char	*s2_addr;
 
-void    display_pid(void)
-{
-    printf("%d\n", getpid());
-}
-
-void handle_sig(int signal)
-{
-	printf("OK %d", signal);
-}
-int main(void)
-{
-	struct sigaction	sig;
-
-	sig.sa_handler = &handle_sig;
-	sigfillset(&sig.sa_mask);
-	sig.sa_flags = 0;
-	sigaction(SIGINT, &sig, NULL);
-	sleep(60);
+	s1_addr = s1;
+	s2_addr = s2;
+	i = 0;
+	while (i < n)
+	{
+		if (s1_addr[i] != s2_addr[i])
+			return (s1_addr[i] - s2_addr[i]);
+		i++;
+	}
 	return (0);
 }

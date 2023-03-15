@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:32:01 by hateisse          #+#    #+#             */
-/*   Updated: 2022/12/11 17:39:25 by hateisse         ###   ########.fr       */
+/*   Created: 2022/10/30 05:26:50 by hateisse          #+#    #+#             */
+/*   Updated: 2022/11/08 13:15:38 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-void    ft_print(int signal)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-    printf("OK %d", signal);
-}
+	size_t	i;
+	size_t	d_len;
 
-void    display_pid(void)
-{
-    printf("%d\n", getpid());
-}
-
-void handle_sig(int signal)
-{
-	printf("OK %d", signal);
-}
-int main(void)
-{
-	struct sigaction	sig;
-
-	sig.sa_handler = &handle_sig;
-	sigfillset(&sig.sa_mask);
-	sig.sa_flags = 0;
-	sigaction(SIGINT, &sig, NULL);
-	sleep(60);
-	return (0);
+	if ((!dst || !src) && !size)
+		return (0);
+	d_len = ft_strlen(dst);
+	if (size <= d_len)
+		return (size + ft_strlen(src));
+	i = 0;
+	dst += d_len;
+	while (src[i] && d_len + i < size - 1)
+		*(dst++) = src[i++];
+	*dst = '\0';
+	return (d_len + ft_strlen(src));
 }

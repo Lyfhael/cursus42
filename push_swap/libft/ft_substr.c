@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:32:01 by hateisse          #+#    #+#             */
-/*   Updated: 2022/12/11 17:39:25 by hateisse         ###   ########.fr       */
+/*   Created: 2022/10/30 05:27:56 by hateisse          #+#    #+#             */
+/*   Updated: 2022/10/30 05:27:56 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
+#include <stdlib.h>
 
-void    ft_print(int signal)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-    printf("OK %d", signal);
-}
+	size_t	slen;
+	char	*res;
 
-void    display_pid(void)
-{
-    printf("%d\n", getpid());
-}
-
-void handle_sig(int signal)
-{
-	printf("OK %d", signal);
-}
-int main(void)
-{
-	struct sigaction	sig;
-
-	sig.sa_handler = &handle_sig;
-	sigfillset(&sig.sa_mask);
-	sig.sa_flags = 0;
-	sigaction(SIGINT, &sig, NULL);
-	sleep(60);
-	return (0);
+	slen = ft_strlen(s);
+	if (slen < start)
+		return (ft_calloc(1, sizeof(*res)));
+	slen = ft_strlen(&s[start]);
+	if (len < slen)
+		slen = len;
+	res = ft_calloc(slen + 1, sizeof(*res));
+	if (!res)
+		return (NULL);
+	ft_memcpy(res, &s[start], slen);
+	return (res);
 }

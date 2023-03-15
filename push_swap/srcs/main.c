@@ -5,35 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:32:01 by hateisse          #+#    #+#             */
-/*   Updated: 2022/12/11 17:39:25 by hateisse         ###   ########.fr       */
+/*   Created: 2023/03/15 12:45:38 by hateisse          #+#    #+#             */
+/*   Updated: 2023/03/15 16:52:16 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "push_swap.h"
 
-void    ft_print(int signal)
+void	ft_error(int errno, t_stack **tab)
 {
-    printf("OK %d", signal);
+	if (tab)
+		free(tab);
+	if (errno == 1)
+		ft_putstr_fd("Error\n", 2);
+	exit(1);
 }
 
-void    display_pid(void)
+int	 ft_locate_int(int *tab, int tablen, int num)
 {
-    printf("%d\n", getpid());
+	while (tablen--)
+		if (tab[tablen] == num)
+			return (1);
+	return (0);
 }
 
-void handle_sig(int signal)
+int main(int argc, char **argv)
 {
-	printf("OK %d", signal);
-}
-int main(void)
-{
-	struct sigaction	sig;
+	t_stack *tab;
 
-	sig.sa_handler = &handle_sig;
-	sigfillset(&sig.sa_mask);
-	sig.sa_flags = 0;
-	sigaction(SIGINT, &sig, NULL);
-	sleep(60);
+	tab = NULL;
+	if (argc < 2)
+		ft_error(0, NULL);
+	ft_parse_argv(&tab, argv, argc);
+	while (argc--)
+	{
+		ft_putnbr_fd(tab->value, 1);
+		ft_putchar('\n');
+		tab = tab->next;
+	}
 	return (0);
 }

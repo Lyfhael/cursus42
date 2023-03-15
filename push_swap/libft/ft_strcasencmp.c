@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcasencmp.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 09:32:01 by hateisse          #+#    #+#             */
-/*   Updated: 2022/12/11 17:39:25 by hateisse         ###   ########.fr       */
+/*   Created: 2022/10/30 05:27:13 by hateisse          #+#    #+#             */
+/*   Updated: 2022/11/08 07:38:15 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-void    ft_print(int signal)
+int	ft_strcasencmp(const char *s1, const char *s2, size_t n)
 {
-    printf("OK %d", signal);
-}
+	size_t				i;
+	unsigned char		*ucs1;
+	unsigned char		*ucs2;
 
-void    display_pid(void)
-{
-    printf("%d\n", getpid());
-}
-
-void handle_sig(int signal)
-{
-	printf("OK %d", signal);
-}
-int main(void)
-{
-	struct sigaction	sig;
-
-	sig.sa_handler = &handle_sig;
-	sigfillset(&sig.sa_mask);
-	sig.sa_flags = 0;
-	sigaction(SIGINT, &sig, NULL);
-	sleep(60);
-	return (0);
+	ucs1 = (unsigned char *)s1;
+	ucs2 = (unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	i = 0;
+	while (i < n - 1 && ucs1[i] && ft_tolower(ucs1[i]) == ft_tolower(ucs2[i]))
+		i++;
+	return (ft_tolower(ucs1[i]) - ft_tolower(ucs2[i]));
 }
