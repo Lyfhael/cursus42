@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 05:28:13 by hateisse          #+#    #+#             */
-/*   Updated: 2022/11/15 21:07:01 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/19 17:46:02 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	*ft_ultobase(unsigned long n, short base);
 int		ft_atoi(const char *nptr);
 long	ft_atol(const char *nptr);
 long	ft_strtol(const char *nptr, const char **endptr, int base);
+int		ft_strtoi(const char *nptr, const char **endptr, int base);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_putchar_fd(char c, int fd);
@@ -42,7 +43,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr(const char *s);
 void	ft_putnstr(const char *s, size_t n);
-
+int		ft_intchr(int n, int *tab, int tabsize);
 int		ft_isalpha(int c);
 int		ft_isupper(int c);
 int		ft_islower(int c);
@@ -67,6 +68,7 @@ int		ft_strcasencmp(const char *s1, const char *s2, size_t n);
 int		ft_strcasecmp(const char *s1, const char *s2);
 
 size_t	ft_strlen(const char *s);
+int		ft_strslen(char **strs);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strnchr(const char *s, size_t count, int c);
 char	*ft_strrchr(const char *s, int c);
@@ -99,5 +101,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+void	ft_print_array_str(char **array);
 
 #endif

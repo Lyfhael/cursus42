@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtol.c                                        :+:      :+:    :+:   */
+/*   ft_strtoi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 06:30:57 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/15 13:42:46 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:52:46 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,16 @@ static int	check_limits(long *n, short sign, int base)
 		log++;
 	}
 	log *= base;
-	if (log == sizeof(long) * 8 && sign == 1)
-		*n = LONG_MAX;
-	else if (log == sizeof(long) * 8 && *n != LONG_MIN && sign == -1)
-		*n = LONG_MIN;
+	if (log == sizeof(int) * 8 && sign == 1)
+		*n = INT_MAX;
+	else if (log == sizeof(int) * 8 && *n != LONG_MIN && sign == -1)
+		*n = INT_MIN;
 	else
 		return (0);
 	return (-1);
 }
 
-long	ft_strtol(const char *nptr, const char **endptr, int base)
+int	ft_strtoi(const char *nptr, const char **endptr, int base)
 {
 	long	result;
 	short	sign;

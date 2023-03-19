@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 15:31:16 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/19 20:32:40 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/19 21:09:32 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,32 @@ void	ft_radix_sort(t_stack **lst_a, int bit_pos)
 	ft_all_stack_b_to_a_top(lst_a, lst_a_copy, &lst_b);
 }
 
+int	ft_sort_three_elements_reverse(t_stack **lst, int mode)
+{
+	if ((*lst)->end_pos == 0)
+	{
+		if ((*lst)->next->end_pos == 1)
+			return (ft_lswap(*lst, "sb"), ft_lrrotate(lst, "rrb"), 0);
+		else
+			return (ft_lrotate(lst, "rb"), 0);
+	}
+	else if ((*lst)->end_pos == 1)
+	{
+		if ((*lst)->next->end_pos == 2)
+			return (ft_lswap(*lst, "sb"), 0);
+		else
+			return (ft_lrrotate(lst, "rrb"), 0);
+	}
+	else
+	{
+		if ((*lst)->next->end_pos == 0)
+			return (ft_lrrotate(lst, "rrb"), ft_lswap(*lst, "sb"), 0);
+	}
+	if (mode)
+		ft_lsfree(*lst, NULL);
+	return (0);
+}
+
 int	ft_sort_five_elements(t_stack **lst_a)
 {
 	t_stack	*lst_b;
@@ -46,7 +72,7 @@ int	ft_sort_five_elements(t_stack **lst_a)
 	}
 	if ((*lst_a)->end_pos == 4)
 		ft_lrotate(lst_a, "ra");
-	ft_sort_three_elements(&lst_b, 0);
+	ft_sort_three_elements_reverse(&lst_b, 0);
 	ft_all_stack_b_to_a_top(lst_a, NULL, &lst_b);
 	ft_lsfree(*lst_a, NULL);
 	return (0);
