@@ -6,13 +6,31 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:35:28 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/15 17:00:45 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:34:36 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack *ft_lschr(t_stack *lst, int to_find)
+void	ft_lsfree(t_stack *lst, t_stack *lst2)
+{
+	t_stack	*tmp;
+
+	while (lst)
+	{
+		tmp = lst;
+		lst = lst->next;
+		free(tmp);
+	}
+	while (lst2)
+	{
+		tmp = lst2;
+		lst2 = lst2->next;
+		free(tmp);
+	}
+}
+
+t_stack	*ft_lschr(t_stack *lst, int to_find)
 {
 	while (lst)
 	{
@@ -28,11 +46,20 @@ t_stack	*ft_lslast(t_stack *lst)
 	if (!lst)
 		return (NULL);
 	while (lst->next)
-			lst = lst->next;
+		lst = lst->next;
 	return (lst);
 }
 
-t_stack *ft_lsnew(int content)
+t_stack	*ft_lsbeforelast(t_stack *lst)
+{
+	if (!lst && !lst->next)
+		return (NULL);
+	while (lst->next->next)
+		lst = lst->next;
+	return (lst);
+}
+
+t_stack	*ft_lsnew(int content)
 {
 	t_stack	*new;
 
@@ -42,14 +69,4 @@ t_stack *ft_lsnew(int content)
 	new->value = content;
 	new->next = NULL;
 	return (new);
-}
-
-void	ft_lsaddback(t_stack **lst, t_stack *new)
-{
-	if (!new)
-		ft_error(0, lst);
-	if (!*lst)
-		*lst = new;
-	else
-		ft_lslast(*lst)->next = new;
 }

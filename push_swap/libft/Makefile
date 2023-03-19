@@ -2,7 +2,7 @@ NAME = libft.a
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 
 AR = ar rcs
 
@@ -22,6 +22,7 @@ SRCS =	get_next_line/get_next_line.c \
 	ft_strcasecmp.c \
 	ft_strsfree.c \
 	ft_strlen.c \
+	ft_strslen.c \
 	ft_strcat.c \
 	ft_strcpy.c \
 	ft_strncat.c \
@@ -64,6 +65,7 @@ SRCS =	get_next_line/get_next_line.c \
 	ft_strmapi.c \
 	ft_putchar_fd.c \
 	ft_putstr_fd.c \
+	ft_print_array_str.c \
 	ft_putendl_fd.c \
 	ft_putnbr_fd.c \
 	ft_strlcpy.c \

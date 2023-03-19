@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intchr.c                                        :+:      :+:    :+:   */
+/*   ft_print_array_str.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/15 14:08:11 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/19 17:56:04 by hateisse         ###   ########.fr       */
+/*   Created: 2023/03/19 15:39:50 by hateisse          #+#    #+#             */
+/*   Updated: 2023/03/19 17:28:30 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_intchr(int n, int *tab, int tabsize)
+#include "libft.h"
+
+void	ft_print_array_str(char **array)
 {
-	while (tabsize--)
+	int	i;
+
+	i = 0;
+	while (array[i])
 	{
-		if (tab[tabsize] == n)
-			return (1);
+		ft_putstr_fd(array[i], 1);
+		array++;
 	}
-	return (0);
 }

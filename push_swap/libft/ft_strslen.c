@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intchr.c                                        :+:      :+:    :+:   */
+/*   ft_strslen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/15 14:08:11 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/19 17:56:04 by hateisse         ###   ########.fr       */
+/*   Created: 2023/03/19 17:45:33 by hateisse          #+#    #+#             */
+/*   Updated: 2023/03/19 17:48:08 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_intchr(int n, int *tab, int tabsize)
+int	ft_strslen(char **strs)
 {
-	while (tabsize--)
-	{
-		if (tab[tabsize] == n)
-			return (1);
-	}
-	return (0);
+	int	i;
+
+	i = 0;
+	while (strs[i])
+		i++;
+	return (i);
 }
