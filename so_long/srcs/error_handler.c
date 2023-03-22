@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:32:59 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/21 18:33:22 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:21:06 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,16 @@ void	ft_error_map_info(int errno, t_map *map_info)
 	if (errno == 3)
 		ft_putstr_fd("Error\nMap doesn't contain a player.\n", 2);
 	if (errno == 4)
-		ft_putstr_fd("Error\nMap must contain at leat 1 collectible.\n", 2);
+		ft_putstr_fd("Error\nMap must contain at least 1 collectible.\n", 2);
+	if (map_info)
+		ft_free_map_info(map_info);
+	exit(1);
+}
+
+void	ft_error_mlx(int errno, t_map *map_info)
+{
+	if (errno == 0)
+		ft_putstr_fd("Error\nCould'nt create a new window.\n", 2);
 	if (map_info)
 		ft_free_map_info(map_info);
 	exit(1);

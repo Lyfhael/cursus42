@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:30:13 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/21 18:35:01 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:41:40 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,22 @@ void	ft_free_map_info(t_map *map_info)
 {
 	ft_strsfree(map_info->map);
 	free(map_info);
+}
+
+void	ft_free_win_info(t_window *win_info)
+{
+	t_img_ptr	*img_ptrs;
+	t_img_ptr	*tmp;
+
+	img_ptrs = win_info->img_ptrs;
+	while (img_ptrs)
+	{
+		tmp = img_ptrs->next;
+		mlx_destroy_image(win_info->mlx_ptr, img_ptrs->img_ptr);
+		free(img_ptrs);
+		img_ptrs = tmp;
+	}
+	free(win_info);
 }
 
 t_map	*ft_init_map_info(void)

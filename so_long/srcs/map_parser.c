@@ -6,20 +6,20 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:35:21 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/21 19:19:31 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:05:15 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_parse_line(char *line, int y, int first_or_last, t_map *map_info)
+void	ft_parse_line(char *line, int y, int fst_or_lst, t_map *map_info)
 {
 	int	x;
 
 	x = -1;
 	while (line[++x])
 	{
-		if ((first_or_last || x == 0 || !line[x + 1]) && line[x] != '1')
+		if ((fst_or_lst || x == 0 || !line[x + 1]) && line[x] != '1')
 			ft_error(7, map_info);
 		if (line[x] == 'P')
 		{
@@ -57,8 +57,6 @@ void	ft_parse_map(t_map *map_info)
 	ft_check_map_info_arguments(map_info);
 	ft_check_if_valid_path_exist(map_info);
 }
-
-#include <stdio.h>
 
 void	ft_get_map_file(char *filename, t_map *map_info)
 {

@@ -6,7 +6,7 @@
 #    By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 12:55:45 by hateisse          #+#    #+#              #
-#    Updated: 2023/03/21 19:08:39 by hateisse         ###   ########.fr        #
+#    Updated: 2023/03/22 18:55:12 by hateisse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS_FILES =	main.c \
 				error_handler.c \
 				flood_fill.c map_parser.c \
 				map_validity_checker.c \
-				utils.c
+				utils.c \
+				list_functions.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 
@@ -47,7 +48,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C $(LFT_DIR)
 	make -C $(MLX_DIR)
-	$(CC) $(OBJS) -L$(LFT_DIR) -lft -L$(MLX_DIR) -lmlx -o $(NAME)
+	$(CC) $(OBJS) -L$(LFT_DIR) -lft -L$(MLX_DIR) -lmlx -lXext -lX11 -o $(NAME)
 
 %.o: %.c
 	$(CC) -Wall -Wextra -Werror -g3 $(CFLAGS) -I$(MLX_DIR) -I$(INCLUDES) -I$(LFT_DIR) -I$(GNL_DIR) -c $< -o $@
