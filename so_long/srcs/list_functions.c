@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:33:40 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/23 14:48:41 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:56:17 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,3 @@ t_img_ptr	*ft_lslast(t_img_ptr *lst)
 			lst = lst->next;
 	return (lst);
 }
-

@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 10:47:47 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/21 15:46:45 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:17:31 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,28 +115,27 @@ short	gnl_readfile(char **line, t_gnl *buf_fd, int fd)
 	return (read_ret);
 }
 
-char	*get_next_line(int fd)
+int	get_next_line(int fd, char **line)
 {
 	static t_gnl	*buflist;
-	short			read_ret;
-	char			*line;
+	int				read_ret;
 
-	line = NULL;
-	if (gnl_precheck(&line, &buflist, fd) < 0)
+	*line = NULL;
+	if (gnl_precheck(line, &buflist, fd) < 0)
 	{
 		gnl_lstfree(&buflist, fd);
-		return (NULL);
+		return (-1);
 	}
-	else if (line)
-		return (line);
-	read_ret = gnl_readfile(&line, gnl_lstsrch(buflist, fd), fd);
+	else if (line && *line)
+		return (1);
+	read_ret = gnl_readfile(line, gnl_lstsrch(buflist, fd), fd);
 	if (read_ret < 1)
 	{
 		gnl_lstfree(&buflist, fd);
 		if (read_ret < 0)
-			return (NULL);
+			return (read_ret);
 	}
-	return (line);
+	return (read_ret);
 }
 /*
 int	main(void)

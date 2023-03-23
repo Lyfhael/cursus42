@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 07:45:37 by hateisse          #+#    #+#             */
-/*   Updated: 2022/11/15 21:14:04 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:47:59 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ short	gnl_check_buf(char **line, char *localbuf, t_gnl *buf_fd);
 short	gnl_precheck(char **line, t_gnl **buflist, int fd);
 short	gnl_readfile(char **line, t_gnl *buf_fd, int fd);
 char	*gnl_expand(char **dest, char *src, char *to_add);
-char	*get_next_line(int fd);
+int		get_next_line(int fd, char **line);
 
 #endif

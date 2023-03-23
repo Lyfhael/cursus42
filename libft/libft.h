@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 05:28:13 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/19 17:46:02 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:54:13 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # define LIBFT_H
 # include <stddef.h>
+# include "get_next_line.h"
 
 typedef struct s_list
 {
@@ -21,6 +22,8 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+char	**ft_strs_expand(char **origin, char *to_add);
+int		ft_str_endswith(char *str, char *needle);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strsjoin(unsigned int count, ...);

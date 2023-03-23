@@ -27,11 +27,13 @@ SRCS =	get_next_line/get_next_line.c \
 	ft_strcpy.c \
 	ft_strncat.c \
 	ft_strchr.c \
+	ft_strs_expand.c \
 	ft_intchr.c \
 	ft_strnchr.c \
 	ft_strrchr.c \
 	ft_strchrnul.c \
 	ft_strstr.c \
+	ft_str_endswith.c \
 	ft_strcasestr.c \
 	ft_strnstr.c \
 	ft_intlen.c \
@@ -88,7 +90,7 @@ SRCS_DIR = ./
 
 INCLUDES = ./
 
-GNL_INCLUDES = get_next_line/
+GNL_INCLUDES = ./get_next_line/
 
 OBJS = $(SRCS:.c=.o)
 

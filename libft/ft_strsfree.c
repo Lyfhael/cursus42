@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 05:27:30 by hateisse          #+#    #+#             */
-/*   Updated: 2022/10/30 05:27:31 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:05:20 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_strsfree(char **strs)
 	size_t	i;
 
 	i = 0;
+	if (!strs)
+		return ;
 	while (strs[i])
 		free(strs[i++]);
 	free(strs);

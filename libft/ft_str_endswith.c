@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_array_str.c                               :+:      :+:    :+:   */
+/*   ft_str_endswith.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 15:39:50 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/21 16:24:44 by hateisse         ###   ########.fr       */
+/*   Created: 2023/03/19 21:39:03 by hateisse          #+#    #+#             */
+/*   Updated: 2023/03/21 14:01:42 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_print_array_str(char **array)
+int	ft_str_endswith(char *str, char *needle)
 {
 	int	i;
+	int	i2;
 
-	i = 0;
-	while (array[i])
+	i = ft_strlen(str);
+	i2 = ft_strlen(needle);
+	while (i > 0 && i2 > 0)
 	{
-		ft_putstr_fd(array[i], 1);
-		ft_putstr_fd("\n", 1);
-		array++;
+		if (needle[--i2] != str[--i])
+			return (0);
 	}
+	if (i2)
+		return (0);
+	return (1);
 }
