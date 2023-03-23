@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:32:59 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/22 19:21:06 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:04:38 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,15 @@ void	ft_error(int errno, t_map *map_info)
 		ft_putstr_fd("Error\nMap's exit cannot be reached.\n", 2);
 	else if (errno == 9)
 		ft_putstr_fd("Error\nSome collectibles cannot be reached.\n", 2);
+	if (map_info)
+		ft_free_map_info(map_info);
+	exit(1);
+}
+
+void	ft_error_2(int errno, t_map *map_info)
+{
+	if (errno == 10)
+		ft_putstr_fd("Error\nIllegal character in map.\n", 2);
 	if (map_info)
 		ft_free_map_info(map_info);
 	exit(1);

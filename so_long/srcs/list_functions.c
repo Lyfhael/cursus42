@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:33:40 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/22 23:45:11 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:48:41 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_lsaddback(t_img_ptr **lst, t_img_ptr *new)
 	}
 }
 
-void	*ft_lschr_img_ptr(t_img_ptr *img_ptrs, int y, int x, int type)
+void	*ft_lschr_img(t_img_ptr *img_ptrs, int y, int x, int type)
 {
 	t_img_ptr	*lst;
 
@@ -31,22 +31,22 @@ void	*ft_lschr_img_ptr(t_img_ptr *img_ptrs, int y, int x, int type)
 	while (lst)
 	{
 		if (lst->x == x && lst->y == y && lst->type == type)
-		{
 			return (lst->img_ptr);
-		}
 		lst = lst->next;
 	}
 	return ((void *)0);
 }
 
-void	ft_lsremoveif(t_img_ptr **img_ptrs, void *mlx_ptr, int y, int x)
+void	ft_lsremoveif(t_window *win_info, int type, int y, int x)
 {
 	t_img_ptr	*lst;
+	t_img_ptr	**img_ptrs;
 
+	img_ptrs = &win_info->img_ptrs;
 	lst = *img_ptrs;
 	while (lst)
 	{
-		if (lst->x == x && lst->y == y)
+		if (lst->x == x && lst->y == y && lst->type == type)
 		{
 			if (lst->prev)
 				lst->prev->next = lst->next;
@@ -55,7 +55,7 @@ void	ft_lsremoveif(t_img_ptr **img_ptrs, void *mlx_ptr, int y, int x)
 			if (lst->next)
 				lst->next->prev = lst->prev;
 			if (lst->img_ptr)
-				mlx_destroy_image(mlx_ptr, lst->img_ptr);
+				mlx_destroy_image(win_info->mlx_ptr, lst->img_ptr);
 			free(lst);
 			return ;
 		}

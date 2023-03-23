@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 21:33:22 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/22 23:39:30 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:24:28 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define SO_LONG_H
 
 # define GAME_TITLE "so_long"
+# define GREEN 2263842
 
 # define ESCAPE 65307
 # define W 119
@@ -32,8 +33,8 @@
 # include "mlx.h"
 # include "mlx_int.h"
 # include <fcntl.h>
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_window
 {
@@ -41,7 +42,7 @@ typedef struct s_window
 	void				*win_ptr;
 	struct s_map		*map_info;
 	struct s_img_ptr	*img_ptrs;
-}	t_window;
+}						t_window;
 
 typedef struct s_img_ptr
 {
@@ -51,52 +52,84 @@ typedef struct s_img_ptr
 	int					type;
 	struct s_img_ptr	*next;
 	struct s_img_ptr	*prev;
-}	t_img_ptr;
+}						t_img_ptr;
 
 typedef struct s_map
 {
-	char	**map;
-	int		y_len;
-	int		x_len;
-	int		players;
-	int		p_pos[2];
-	int		collectibles;
-	int		can_be_collected;
-	int		exit_reachable;
-	int		exits;
-}	t_map;
+	char				**map;
+	int					y_len;
+	int					x_len;
+	int					players;
+	int					p_pos[2];
+	int					collectibles;
+	int					can_be_collected;
+	int					exit_reachable;
+	int					game_end;
+	int					exits;
+	int					moves;
+}						t_map;
 
-void		ft_load_and_display_image(t_window *win_info, int y, int x, int type);
+void					ft_create_hooks(t_window *win_info);
+int						handle_key_pressed(int key, t_window *win_info);
+int						all_collected(char **map);
 
-void		ft_lsaddback(t_img_ptr **lst, t_img_ptr *new);
-void		ft_lsremoveif(t_img_ptr **img_ptrs, void *mlx_ptr, int y, int x);
-t_img_ptr	*ft_lsnew(int type, int y, int x, void *img_ptr);
-t_img_ptr	*ft_lslast(t_img_ptr *lst);
-void		*ft_lschr_img_ptr(t_img_ptr *img_ptrs, int y, int x, int type);
+char					*ft_type_to_path(int type, t_window *win_info);
 
-int			ft_on_window_close(t_window *win_info);
+void					ft_load_n_display_image(t_window *win_info, int y,
+							int x, int type);
+void					ft_display_images(t_window *win_info);
 
-t_window	*ft_init_and_create_window(int y, int x);
+int						get_new_pos(int vector, int move_direction, int *p_pos);
+void					edit_p_pos_and_map(int *npos, int *p_pos, char **map,
+							int newobj);
 
-void		ft_trim_nl(char *line);
+void					destroy_all_images(t_img_ptr **lst, void *mlx_ptr);
 
-void		ft_free_map_info(t_map *map_info);
-void		ft_free_win_info(t_window *win_info);
+int						target_is_object(char **map, int *p_pos, int object,
+							int move_direction);
+void					move_to_exit(t_window *win_info);
+void					move_to_ground(char **map, int *p_pos, int move,
+							t_window *win_info);
+void					move_to_collectible(char **map, int *p_pos, int move,
+							t_window *w_info);
+void					update_and_print_moves(t_window *win_info);
 
-void		ft_error(int errno, t_map *map_info);
-void		ft_error_map_info(int errno, t_map *map_info);
-void		ft_error_mlx(int errno, t_map *map_info);
+void					ft_lsaddback(t_img_ptr **lst, t_img_ptr *new);
+void					ft_lsremoveif(t_window *win_info, int type, int y,
+							int x);
+t_img_ptr				*ft_lsnew(int type, int y, int x, void *img_ptr);
+t_img_ptr				*ft_lslast(t_img_ptr *lst);
+void					*ft_lschr_img(t_img_ptr *img_ptrs, int y, int x,
+							int type);
 
-t_map		*ft_init_map_info(void);
+int						ft_on_window_close(t_window *win_info);
+int						ft_close_window(t_window *win_info);
 
-void		ft_get_map_file(char *filename, t_map *map_info);
-void		ft_parse_line(char *line, int y, int fst_or_lst, t_map *map_info);
-void		ft_check_map_info_arguments(t_map *map_info);
-void		ft_check_if_valid_path_exist(t_map *map_info);
-void		ft_parse_map(t_map *map_info);
+t_window				*ft_init_and_create_window(int y, int x);
 
-void		ft_flood_fill_right_bot(int y, int x, t_map *map_info);
-void		ft_flood_fill_left_bot(int y, int x, t_map *map_info);
-void		ft_flood_fill_right_top(int y, int x, t_map *map_info);
-void		ft_flood_fill_left_top(int y, int x, t_map *map_info);
+void					ft_trim_nl(char *line);
+
+void					ft_free_map_info(t_map *map_info);
+void					ft_free_win_info(t_window *win_info);
+
+void					ft_error(int errno, t_map *map_info);
+void					ft_error_2(int errno, t_map *map_info);
+void					ft_error_map_info(int errno, t_map *map_info);
+void					ft_error_mlx(int errno, t_map *map_info);
+
+t_map					*ft_init_map_info(void);
+
+void					ft_get_map_file(char *filename, t_map *map_info);
+void					ft_parse_line(char *line, int y, int fst_or_lst,
+							t_map *map_info);
+
+void					ft_check_map_info_arguments(t_map *map_info);
+void					ft_check_if_valid_path_exist(t_map *map_info);
+
+void					ft_parse_map(t_map *map_info);
+
+void					ft_flood_fill_right_bot(int y, int x, t_map *map_info);
+void					ft_flood_fill_left_bot(int y, int x, t_map *map_info);
+void					ft_flood_fill_right_top(int y, int x, t_map *map_info);
+void					ft_flood_fill_left_top(int y, int x, t_map *map_info);
 #endif

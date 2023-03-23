@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:30:13 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/22 19:41:40 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:29:06 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	ft_free_win_info(t_window *win_info)
 		free(img_ptrs);
 		img_ptrs = tmp;
 	}
+	if (win_info->mlx_ptr)
+		free(win_info->mlx_ptr);
 	free(win_info);
 }
 
@@ -57,7 +59,9 @@ t_map	*ft_init_map_info(void)
 	map_info->exits = 0;
 	map_info->players = 0;
 	map_info->y_len = 0;
+	map_info->moves = 0;
 	map_info->x_len = 0;
+	map_info->game_end = 0;
 	map_info->can_be_collected = 0;
 	map_info->exit_reachable = 0;
 	return (map_info);

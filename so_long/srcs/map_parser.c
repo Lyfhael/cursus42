@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:35:21 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/22 16:05:15 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:06:50 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_parse_line(char *line, int y, int fst_or_lst, t_map *map_info)
 	{
 		if ((fst_or_lst || x == 0 || !line[x + 1]) && line[x] != '1')
 			ft_error(7, map_info);
+		if (!ft_strchr("01PEC", line[x]))
+			ft_error_2(10, map_info);
 		if (line[x] == 'P')
 		{
 			map_info->players++;
