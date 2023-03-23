@@ -6,18 +6,33 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:34:03 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/23 15:53:18 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:41:56 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	ft_set_ground_chars_to_zero(char **map)
+{
+	int	y;
+	int	x;
+
+	y = -1;
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
+		{
+			if (map[y][x] == 'F')
+				map[y][x] = '0';
+		}
+	}
+}
+
 void	ft_check_if_valid_path_exist(t_map *map_info)
 {
-	ft_flood_fill_right_bot(map_info->p_pos[0], map_info->p_pos[1], map_info);
-	ft_flood_fill_right_top(map_info->p_pos[0], map_info->p_pos[1], map_info);
-	ft_flood_fill_left_top(map_info->p_pos[0], map_info->p_pos[1], map_info);
-	ft_flood_fill_left_bot(map_info->p_pos[0], map_info->p_pos[1], map_info);
+	ft_flood_fill(map_info->p_pos[0], map_info->p_pos[1], map_info);
+	ft_set_ground_chars_to_zero(map_info->map);
 	if (map_info->exit_reachable == 0)
 		ft_error(8, map_info);
 	if (map_info->can_be_collected != map_info->collectibles)

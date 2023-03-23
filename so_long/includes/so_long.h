@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 21:33:22 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/23 16:24:28 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:44:33 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,8 @@ void					ft_check_if_valid_path_exist(t_map *map_info);
 
 void					ft_parse_map(t_map *map_info);
 
-void					ft_flood_fill_right_bot(int y, int x, t_map *map_info);
-void					ft_flood_fill_left_bot(int y, int x, t_map *map_info);
-void					ft_flood_fill_right_top(int y, int x, t_map *map_info);
-void					ft_flood_fill_left_top(int y, int x, t_map *map_info);
+void					ft_set_ground_chars_to_zero(char **map);
+void					ft_flood_fill(int y, int x, t_map *map_info);
+void					check_exit_else_continue(char c, int y, int x,
+							t_map *map_info);
 #endif
