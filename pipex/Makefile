@@ -6,7 +6,7 @@
 #    By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 12:55:45 by hateisse          #+#    #+#              #
-#    Updated: 2023/03/23 17:12:15 by hateisse         ###   ########.fr        #
+#    Updated: 2023/03/24 17:29:41 by hateisse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME = pipex
 
 CC = gcc
 
-CLFAGS = -Wall -Wextra -Werror -g3
+# CLFAGS = -Wall -Wextra -Werror -g3
+
+CFLAGS = -g3
 
 RM = rm -f
 

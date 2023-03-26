@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 21:33:22 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/23 19:44:33 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:46:46 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void					*ft_lschr_img(t_img_ptr *img_ptrs, int y, int x,
 int						ft_on_window_close(t_window *win_info);
 int						ft_close_window(t_window *win_info);
 
-t_window				*ft_init_and_create_window(int y, int x);
+t_window				*ft_init_and_create_window(t_map *map_info);
 
 void					ft_trim_nl(char *line);
 
@@ -125,6 +125,7 @@ void					ft_parse_line(char *line, int y, int fst_or_lst,
 
 void					ft_check_map_info_arguments(t_map *map_info);
 void					ft_check_if_valid_path_exist(t_map *map_info);
+void					ft_check_map_size(t_window *win_info);
 
 void					ft_parse_map(t_map *map_info);
 

@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 05:26:11 by hateisse          #+#    #+#             */
-/*   Updated: 2022/11/08 07:37:44 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/26 14:15:58 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ char	**ft_split(char const *s, char c)
 	size_t	words;
 	size_t	x;
 
+	if (!s)
+		return (NULL);
 	words = count_words(s, c);
 	res = ft_calloc(words + 1, sizeof(*res));
 	x = 0;

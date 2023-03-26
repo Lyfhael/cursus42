@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:32:59 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/23 16:56:24 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:48:36 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	ft_error_mlx(int errno, t_map *map_info)
 {
 	if (errno == 0)
 		ft_putstr_fd("Error\nCould'nt create a new window.\n", 2);
+	if (errno == 1)
+		ft_putstr_fd("Error\nMap size exceeds your screen resolution\n", 2);
 	if (map_info)
 		ft_free_map_info(map_info);
 	exit(1);
