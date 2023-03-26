@@ -6,13 +6,13 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:29:05 by hateisse          #+#    #+#             */
-/*   Updated: 2023/03/26 20:08:49 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:41:22 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_error(int erno)
+int	ft_error(int erno)
 {
 	if (erno == 0)
 		ft_putstr_fd("Usage: ./pipex file1 cmd1 cmd2 file2\n", 2);
@@ -27,10 +27,10 @@ void	ft_error(int erno)
 	if (erno == 5)
 		perror("Execve");
 	if (erno == 6)
-		perror("Malloc");
+		return (perror("Malloc"), exit(1), 0);
 	if (erno == 7)
 		ft_putstr_fd("Error: Couldn't fetch", 2);
-	exit(1);
+	return (0);
 }
 
 char	*ft_get_env_element(char **envp, char *element)
@@ -163,7 +163,8 @@ void	ft_print_buffer(int fd)
 	while (ret > 0)
 	{
 		ret = get_next_line(fd, &result);
-		printf("[%d] %s\n", ret, result);
+		if (result && *result)
+			ft_putstr_fd(result, 1);
 	}
 }
 
@@ -171,6 +172,8 @@ int	pipex(int input_fd, int output_fd, char *cmd_n_params, char **envp)
 {
 	t_fork *params;
 
+	if (input_fd == -1)
+		return (-1);
 	params = ft_init_fork(input_fd, output_fd, cmd_n_params, envp);
 	if (!params)
 		return (1);
@@ -183,9 +186,9 @@ int	main(int argc, char **argv, char **envp)
 	int		tube[2];
 
 	if (argc != 5)
-		ft_error(0);
+		return (ft_error(0), 1);
 	if (pipe(tube) == -1)
-		ft_error(2);
+		return (ft_error(2), 1);
 	pipex(load_input(argv[1]), tube[1], argv[2], envp);
 	close(tube[1]);
 	pipex(tube[0], load_output(argv[4]), argv[3], envp);
