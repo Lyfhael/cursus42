@@ -6,7 +6,7 @@
 #    By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 12:55:45 by hateisse          #+#    #+#              #
-#    Updated: 2023/03/24 17:29:41 by hateisse         ###   ########.fr        #
+#    Updated: 2023/03/27 18:05:51 by hateisse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,11 @@ RM = rm -f
 
 SRCS_DIR = ./srcs/
 
-SRCS_FILES =	main.c
+SRCS_FILES =	main.c \
+				handle_fork_struct.c \
+				load_files.c \
+				ft_error.c \
+				check_command_path.c
 				
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 

@@ -10,6 +10,8 @@ RM = rm -f
 
 SRCS =	get_next_line/get_next_line.c \
 	get_next_line/get_next_line_utils.c \
+	ft_is_directory.c \
+	ft_get_env_element.c \
 	ft_memset.c \
 	ft_bzero.c \
 	ft_memcpy.c \
