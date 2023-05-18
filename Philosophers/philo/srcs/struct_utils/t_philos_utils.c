@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 01:30:11 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/16 17:49:25 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:26:21 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void	philos_ls_free(t_philos **arg)
 	while (i--)
 	{
 		ptr = (*arg)->right;
-		if (i == 0)
-			free_mutex((*arg)->locks.lprint);
+		free_mutex((*arg)->locks.lexit);
 		free_mutex((*arg)->locks.lfork);
 		free_mutex((*arg)->locks.lstate);
-		free_mutex((*arg)->locks.lexit);
 		free_mutex((*arg)->locks.lmeal_ts);
+		if (i == 0)
+			free_mutex((*arg)->locks.lprint);
 		free(*arg);
 		*arg = ptr;
 	}

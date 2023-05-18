@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 01:56:31 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/16 17:43:30 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/18 18:59:03 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void	*philo_routine(void *vphilos)
 	t_philos			*philos;
 
 	philos = vphilos;
+	pthread_mutex_lock(philos->locks.lstate);
 	philos->state = ALIVE;
+	pthread_mutex_unlock(philos->locks.lstate);
 	while (1)
 		if (!philo_next_action(philos))
 			break ;
