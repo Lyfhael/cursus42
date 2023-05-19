@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:20:01 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/18 05:54:28 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/19 08:26:12 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	loop_check_program_can_end(t_philos *philos, t_philo_params pparams)
 			return ;
 		philos = philos->right;
 	}
-	return ;
 }
 
 int	main(int argc, char **argv)

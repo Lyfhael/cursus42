@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 06:41:06 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/18 05:07:33 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/19 09:15:06 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ bool	init_philos(t_philos **philos, t_philo_params pparams)
 	pthread_mutex_t		*print;
 
 	print = ft_calloc(1, sizeof(pthread_mutex_t));
+	*philos = 0;
 	if (!print)
 		return (print_error(ERMALLOC, NULL), false);
 	i = 0;
