@@ -6,7 +6,7 @@
 #    By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 18:07:52 by hateisse          #+#    #+#              #
-#    Updated: 2023/05/16 17:45:41 by hateisse         ###   ########.fr        #
+#    Updated: 2023/05/19 03:22:55 by hateisse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,18 +118,13 @@ libft:
 
 libft/libft.a: libft
 
-suppr_script:
-	@echo '{\nleak readline\nMemcheck:Leak\n...\nfun:readline\n}' > $(SCRIPT_SUPPR)
-	@echo '{\nleak add_history\nMemcheck:Leak\n...\nfun:add_history\n}' >> $(SCRIPT_SUPPR)
-	@echo '{\nleak tgetent_sp\nMemcheck:Leak\n...\nfun:tgetent_sp\n}' >> $(SCRIPT_SUPPR)
-	@echo '{\nleak tgetstr_sp\nMemcheck:Leak\n...\nfun:tgetstr_sp\n}' >> $(SCRIPT_SUPPR)
 
 $(BUILD):
 	@mkdir $(BUILD) $(DIRS)
 
 $(NAME):	libft/libft.a $(BUILD)  $(OBJ)
 	@echo "$(LGREEN)OBJECT FILES COMPILED                                    $(NC)"
-	@$(CC) -Wall -Werror -Wextra $(OBJ) $(LIB_DIR) -lft -lncurses -lreadline -o $(NAME)
+	@$(CC) -Wall -Werror -Wextra $(OBJ) $(LIB_DIR) -lft -o $(NAME)
 	@echo "$(LGREEN)MINISHELL COMPILED                                        $(NC)"
 	@tput cnorm
 
@@ -138,8 +133,8 @@ $(BUILD)%.o:	$(SRCS_DIR)%.c Makefile
 	@$(CC) $(CFLAGS) $(INCLUDES) $< -o $@ > /dev/null || $(call makeprint,"Compiling ", "$@" ,"KO")
 	@$(call makeprint,"Compiling ", "$@" ,"OK")
 
-launch: suppr_script
-	@make all ; valgrind --leak-check=full --track-origins=yes --quiet --show-leak-kinds=all --track-fds=yes --suppressions=$(SCRIPT_SUPPR) ./minishell
+launch: all
+	@valgrind --leak-check=full --tool=helgrind --track-origins=yes --quiet --show-leak-kinds=all --track-fds=yes ./philo
 
 clean:
 	@rm -rf $(BUILD)
