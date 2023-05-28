@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 01:56:31 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/28 18:28:19 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/28 20:31:15 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ bool	philo_threads_staging_area(t_philos *philos)
 	pthread_mutex_lock(philos->locks.lprint);
 	philos->start_ts = current_ms_timestamp();
 	pthread_mutex_unlock(philos->locks.lprint);
+	pthread_mutex_lock(philos->locks.lmeal_ts);
+	philos->last_meal_ts = current_ms_timestamp();
+	pthread_mutex_unlock(philos->locks.lmeal_ts);
 	if (philos->id == 0
 		|| (philos->philo_params.nb_philos % 2 == 0 && philos->id % 2 == 0))
 		;
@@ -97,9 +100,6 @@ bool	launch_philos(t_philos *philos, t_philo_params philo_params)
 	pthread_mutex_lock(philos->locks.lprint);
 	while (philo_params.nb_philos--)
 	{
-		pthread_mutex_lock(philos->locks.lmeal_ts);
-		philos->last_meal_ts = current_ms_timestamp();
-		pthread_mutex_unlock(philos->locks.lmeal_ts);
 		if (pthread_create(&new_thread, NULL, &philo_routine, philos))
 			return (routine_after_thread_failure(philos), false);
 		else if (pthread_detach(new_thread))

@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 04:17:29 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/28 16:39:02 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/29 00:26:46 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,3 @@ bool	philo_eat(t_philos *philos)
 	lay_forks(philos);
 	return (true);
 }
-
-// 	0
-// 3		1
-// 	2
