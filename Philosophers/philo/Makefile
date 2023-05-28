@@ -6,7 +6,7 @@
 #    By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 18:07:52 by hateisse          #+#    #+#              #
-#    Updated: 2023/05/19 08:20:56 by hateisse         ###   ########.fr        #
+#    Updated: 2023/05/27 02:46:25 by hateisse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,7 +125,7 @@ $(BUILD):
 $(NAME):	libft/libft.a $(BUILD)  $(OBJ)
 	@echo "$(LGREEN)OBJECT FILES COMPILED                                    $(NC)"
 	@$(CC) -Wall -Werror -Wextra $(OBJ) $(LIB_DIR) -lft -o $(NAME)
-	@echo "$(LGREEN)MINISHELL COMPILED                                        $(NC)"
+	@echo "$(LGREEN)PHILO COMPILED                                        $(NC)"
 	@tput cnorm
 
 $(BUILD)%.o:	$(SRCS_DIR)%.c Makefile 
@@ -138,7 +138,7 @@ launch: all
 
 clean:
 	@rm -rf $(BUILD)
-	@echo "================cleaned================"
+	@echo "CLEANED"
 
 fclean:	clean
 	@rm -f suppr.txt

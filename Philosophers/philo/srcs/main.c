@@ -6,15 +6,15 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:20:01 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/19 23:41:27 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/27 02:44:48 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-bool	have_everyone_exited(t_philos *philos)
+bool	all_threads_exited(t_philos *philos)
 {
-	int			i;
+	int	i;
 
 	i = philos->philo_params.nb_philos;
 	while (i--)
@@ -40,12 +40,12 @@ void	loop_check_program_can_end(t_philos *philos, t_philo_params pparams)
 			while (1)
 			{
 				usleep(2 * 1000);
-				if (have_everyone_exited(philos))
+				if (all_threads_exited(philos))
 					return ;
 			}
 		}
 		pthread_mutex_unlock(philos->locks.lprint);
-		if (pparams.nb_meals != DISABLED && have_everyone_exited(philos))
+		if (pparams.nb_meals != DISABLED && all_threads_exited(philos))
 			return ;
 		philos = philos->right;
 	}

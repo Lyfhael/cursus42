@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:20:20 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/18 04:59:52 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/27 22:07:04 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@
 
 # define SUCCESS 0
 # define FAILURE 1
+# define ERROR -1
+# define PENDING 1
 # define DISABLED -1
+
+# define MAX_USLEEP 600
 
 # define LGREY "\033[90m"
 # define NC "\033[0m"
@@ -38,7 +42,7 @@ bool		philo_think(t_philos *philos);
 bool		philo_escape(t_philos *philos);
 bool		print_current_action(t_philos *philos);
 bool		philo_next_action(t_philos *philos);
-void		take_forks(t_philos *philos);
+bool		take_forks(t_philos *philos);
 void		lay_forks(t_philos *philos);
 
 // death handling functions
@@ -51,6 +55,8 @@ bool		has_exited(t_philos *philos);
 
 bool		launch_philos(t_philos *philos, t_philo_params philo_params);
 void		*philo_routine(void *vphilos);
+int			all_threads_started(t_philos *philos);
+bool		all_threads_exited(t_philos *philos);
 
 // parsing related
 
@@ -80,5 +86,6 @@ bool		init_philos(t_philos **philos, t_philo_params pparams);
 // utils
 
 t_ts		current_ms_timestamp(void);
+void		more_accurate_usleep(t_milliseconds time_to_sleep);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 01:02:56 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/18 05:01:18 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/27 06:51:57 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,22 @@ int	check_argument_validity(char *arg, int argno, int *errno)
 	return (result);
 }
 
+int	determine_time_to_think(t_philo_params *philo_params)
+{
+	int	time_to_eat;
+	int	time_to_sleep;
+
+	time_to_eat = philo_params->time_to_eat;
+	time_to_sleep = philo_params->time_to_sleep;
+	if (philo_params->nb_philos % 2 == 0)
+		return (0);
+	if (time_to_eat == time_to_sleep)
+		return (time_to_sleep);
+	else if (time_to_eat > time_to_sleep)
+		return (time_to_eat + time_to_sleep);
+	return (0);
+}
+
 bool	parse_arguments(int ac, char **av, t_philo_params *philo_params)
 {
 	int	errno;
@@ -64,6 +80,7 @@ bool	parse_arguments(int ac, char **av, t_philo_params *philo_params)
 	philo_params->time_to_die = check_argument_validity(av[2], 2, &errno);
 	philo_params->time_to_eat = check_argument_validity(av[3], 3, &errno);
 	philo_params->time_to_sleep = check_argument_validity(av[4], 4, &errno);
+	philo_params->time_to_think = determine_time_to_think(philo_params);
 	if (ac == 6)
 		philo_params->nb_meals = check_argument_validity(av[5], 5, &errno);
 	else

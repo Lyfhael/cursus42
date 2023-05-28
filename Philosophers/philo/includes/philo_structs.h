@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 01:36:49 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/18 05:07:24 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/27 22:00:58 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,17 @@ enum e_philo_errors
 enum e_philo_states
 {
 	STARTING,
+	READY,
 	ALIVE,
 	DEAD,
-	EXITED
+	EXITED,
+	FAILED_TO_START
 };
 
 enum e_philo_actions
 {
-	TAKING_FORK,
+	TAKING_LEFT_FORK,
+	TAKING_RIGHT_FORK,
 	EATING,
 	SLEEPING,
 	THINKING,
@@ -51,6 +54,7 @@ typedef unsigned char		t_fork;
 typedef unsigned char		t_action;
 typedef unsigned long long	t_ts;
 typedef unsigned long long	t_microseconds;
+typedef unsigned long long	t_milliseconds;
 typedef short				t_id;
 
 typedef struct s_philo_params
@@ -59,6 +63,7 @@ typedef struct s_philo_params
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
+	int					time_to_think;
 	int					nb_meals;
 }	t_philo_params;
 

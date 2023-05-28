@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep.c                                            :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amouflet <amouflet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 04:18:42 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/27 22:10:06 by hateisse         ###   ########.fr       */
+/*   Created: 2023/05/25 14:39:42 by amouflet          #+#    #+#             */
+/*   Updated: 2023/05/25 14:40:58 by amouflet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include <unistd.h>
 
-bool	philo_sleep(t_philos *philos)
+void	ft_putstr(char *str)
 {
-	philos->action = SLEEPING;
-	if (!print_current_action(philos))
-		return (false);
-	more_accurate_usleep(philos->philo_params.time_to_sleep);
-	return (true);
+	int i;
+
+	i = 0;
+	while (str && str[i])
+		i++;
+	if (i)
+		write(1, str, i);
 }
