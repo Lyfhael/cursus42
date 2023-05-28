@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 01:56:31 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/27 22:08:12 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/28 18:28:19 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,6 @@ bool	wait_all_threads_started(t_philos *philos)
 	return (true);
 }
 
-// 1 2 3 4    // 1 on attend pas ; 2 on attend ; 3 on attend pas ; 4 on attend
-// 1 2 3 // 1 on attend pas ; 2 on attend ; 3 on attend 2x
-// 1 2 3 4 5 // 1 on attend pas ; 2 on attend ; 3 on attend 2x ; 4 on attend ; 5 on attend x2;
-
-// Premier philo n'attend jamais au début.
-	// Si nombre pair de philo et philo actuel impair on attend pas
-	// philo actuel pair, on attend
-	// philo actuel impair, on attend 2x
-
 bool	philo_threads_staging_area(t_philos *philos)
 {
 	if (wait_all_threads_started(philos) == false)
@@ -49,12 +40,13 @@ bool	philo_threads_staging_area(t_philos *philos)
 	pthread_mutex_lock(philos->locks.lprint);
 	philos->start_ts = current_ms_timestamp();
 	pthread_mutex_unlock(philos->locks.lprint);
-	if (philos->id == 0 || (philos->philo_params.nb_philos % 2 == 0 && philos->id % 2 == 0))
+	if (philos->id == 0
+		|| (philos->philo_params.nb_philos % 2 == 0 && philos->id % 2 == 0))
 		;
 	else if (philos->id % 2 != 0)
-		usleep(philos->philo_params.time_to_eat * 1000);
-	// else
-	// 	philo->time_think_start = data->time_eat * 2;
+		more_accurate_usleep(philos->philo_params.time_to_eat);
+	else
+		more_accurate_usleep(philos->philo_params.time_to_eat * 2);
 	return (true);
 }
 
@@ -97,24 +89,11 @@ int	all_threads_started(t_philos *philos)
 	return (SUCCESS);
 }
 
-void	routine_after_thread_failure(t_philos *philos)
-{
-	philos->state = FAILED_TO_START;
-	pthread_mutex_lock(philos->locks.lexit);
-	philos->thread_has_exit = true;
-	pthread_mutex_unlock(philos->locks.lexit);
-	printf("A philo has escaped! (pthread launch failed)\n");
-	while (all_threads_exited(philos) == false)
-		usleep(50);
-	philos_ls_free(&philos);
-}
-
 bool	launch_philos(t_philos *philos, t_philo_params philo_params)
 {
 	pthread_t	new_thread;
 
 	new_thread = 0;
-	
 	pthread_mutex_lock(philos->locks.lprint);
 	while (philo_params.nb_philos--)
 	{

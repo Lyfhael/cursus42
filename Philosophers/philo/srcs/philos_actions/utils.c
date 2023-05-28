@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 04:39:14 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/27 22:08:32 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/28 16:43:49 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_ts	current_ms_timestamp(void)
 bool	print_current_action(t_philos *philos)
 {
 	pthread_mutex_lock(philos->locks.lprint);
-	if (has_someone_died(philos) || is_dead(philos))
+	if (has_someone_died(philos) || is_dead(philos) || has_eaten_enough(philos))
 	{
 		pthread_mutex_unlock(philos->locks.lprint);
 		return (false);

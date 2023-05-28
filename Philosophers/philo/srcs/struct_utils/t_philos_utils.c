@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 01:30:11 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/27 02:08:00 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/28 16:16:45 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_philos	*philos_ls_new(int id, t_philo_params philo_params)
 	new = ft_calloc(1, sizeof(t_philos));
 	if (!new)
 		return (free(new), NULL);
-	new->action = SLEEPING;
+	new->action = THINKING;
 	new->philo_params = philo_params;
 	new->id = id;
 	new->state = STARTING;

@@ -6,7 +6,7 @@
 #    By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 18:07:52 by hateisse          #+#    #+#              #
-#    Updated: 2023/05/27 02:46:25 by hateisse         ###   ########.fr        #
+#    Updated: 2023/05/28 18:16:08 by hateisse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ ERROR_HANDLING			=	error_printing.c
 
 PTHREAD_HANDLING_DIR	=	pthread_handling/
 
-PTHREAD_HANDLING		=	launch_threads.c
+PTHREAD_HANDLING		=	launch_threads.c	\
+							routine_thread_failure.c
 
 STRUCT_UTILS_DIR		=	struct_utils/
 

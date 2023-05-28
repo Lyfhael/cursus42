@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 01:02:56 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/27 06:51:57 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/28 16:17:47 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	determine_time_to_think(t_philo_params *philo_params)
 	if (philo_params->nb_philos % 2 == 0)
 		return (0);
 	if (time_to_eat == time_to_sleep)
-		return (time_to_sleep);
+		return (time_to_eat);
 	else if (time_to_eat > time_to_sleep)
 		return (time_to_eat + time_to_sleep);
 	return (0);

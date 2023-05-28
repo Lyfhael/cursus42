@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 04:17:29 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/27 22:10:03 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/28 16:39:02 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ bool	philo_eat(t_philos *philos)
 		return (pthread_mutex_unlock(philos->locks.lprint), false);
 	pthread_mutex_unlock(philos->locks.lprint);
 	if (philos->left == philos)
-		return (usleep(1 * 4000), philo_eat(philos));
+		return (more_accurate_usleep(1), philo_eat(philos));
 	if (take_forks(philos) == false)
 		return (false);
 	philos->action = EATING;
 	if (!print_current_action(philos))
 		return (lay_forks(philos), false);
+	if (philos->philo_params.nb_meals != DISABLED)
+		philos->nb_meals += 1;
 	pthread_mutex_lock(philos->locks.lmeal_ts);
 	philos->last_meal_ts = current_ms_timestamp();
 	pthread_mutex_unlock(philos->locks.lmeal_ts);
 	more_accurate_usleep(philos->philo_params.time_to_eat);
 	lay_forks(philos);
-	if (philos->philo_params.nb_meals != DISABLED)
-		philos->nb_meals += 1;
 	return (true);
 }
 

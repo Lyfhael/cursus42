@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:20:01 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/27 02:44:48 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/28 19:53:48 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,16 @@ bool	all_threads_exited(t_philos *philos)
 	i = philos->philo_params.nb_philos;
 	while (i--)
 	{
+		pthread_mutex_lock(philos->locks.lstate);
 		pthread_mutex_lock(philos->locks.lexit);
-		if (!philos->thread_has_exit)
-			return (pthread_mutex_unlock(philos->locks.lexit), false);
+		if (!philos->thread_has_exit && philos->state != STARTING)
+		{
+			pthread_mutex_unlock(philos->locks.lexit);
+			pthread_mutex_unlock(philos->locks.lstate);
+			return (false);
+		}
 		pthread_mutex_unlock(philos->locks.lexit);
+		pthread_mutex_unlock(philos->locks.lstate);
 		philos = philos->right;
 	}
 	return (true);
@@ -32,14 +38,14 @@ void	loop_check_program_can_end(t_philos *philos, t_philo_params pparams)
 {
 	while (1)
 	{
-		usleep(2 * 1000);
+		more_accurate_usleep(2);
 		pthread_mutex_lock(philos->locks.lprint);
 		if (has_someone_died(philos) || is_dead(philos))
 		{
 			pthread_mutex_unlock(philos->locks.lprint);
 			while (1)
 			{
-				usleep(2 * 1000);
+				more_accurate_usleep(2);
 				if (all_threads_exited(philos))
 					return ;
 			}
@@ -49,6 +55,7 @@ void	loop_check_program_can_end(t_philos *philos, t_philo_params pparams)
 			return ;
 		philos = philos->right;
 	}
+	usleep(500);
 }
 
 int	main(int argc, char **argv)

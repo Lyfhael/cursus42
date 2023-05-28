@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:20:20 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/27 22:07:04 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/05/28 18:15:15 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void		lay_forks(t_philos *philos);
 bool		has_someone_died(t_philos *philos);
 bool		is_dead(t_philos *philos);
 bool		has_exited(t_philos *philos);
+bool		has_eaten_enough(t_philos *philos);
 
 // pthread related
 
@@ -57,6 +58,7 @@ bool		launch_philos(t_philos *philos, t_philo_params philo_params);
 void		*philo_routine(void *vphilos);
 int			all_threads_started(t_philos *philos);
 bool		all_threads_exited(t_philos *philos);
+void		routine_after_thread_failure(t_philos *philos);
 
 // parsing related
 
