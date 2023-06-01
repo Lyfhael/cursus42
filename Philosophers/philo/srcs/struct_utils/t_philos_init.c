@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 06:41:06 by hateisse          #+#    #+#             */
-/*   Updated: 2023/05/19 09:15:06 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/06/01 20:28:57 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ bool	init_philos(t_philos **philos, t_philo_params pparams)
 	{
 		new = philos_ls_new(i++, pparams);
 		if (!new)
+		{
+			free_mutex(print);
 			return (print_error(ERLSNEW, NULL), philos_ls_free(philos), false);
+		}
 		new->locks.lprint = print;
 		philos_ls_addback(philos, new);
 	}
