@@ -1,0 +1,27 @@
+[submodule "get_next_line"]
+	path = get_next_line
+	url = https://github.com/teisseire117/get_next_line
+[submodule "pipex"]
+	path = pipex
+	url = https://github.com/teisseire117/pipex
+[submodule "born2beroot"]
+	path = born2beroot
+	url = https://github.com/teisseire117/born2beroot
+[submodule "so_long"]
+	path = so_long
+	url = https://github.com/teisseire117/so_long
+[submodule "Philosophers"]
+	path = Philosophers
+	url = https://github.com/teisseire117/Philosophers
+[submodule "libft"]
+	path = libft
+	url = https://github.com/teisseire117/libft
+[submodule "ft_printf"]
+	path = ft_printf
+	url = https://github.com/teisseire117/ft_printf
+[submodule "Minishell"]
+	path = Minishell
+	url = https://github.com/Malfwat/Minishell
+[submodule "push_swap"]
+	path = push_swap
+	url = https://github.com/teisseire117/push_swap
