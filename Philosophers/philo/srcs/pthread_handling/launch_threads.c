@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 01:56:31 by hateisse          #+#    #+#             */
-/*   Updated: 2023/06/01 20:39:57 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/06/26 08:11:08 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	*philo_routine(void *vphilos)
 	if (philo_threads_staging_area(philos) == false)
 		return (NULL);
 	pthread_mutex_lock(philos->locks.lstate);
-	philos->state = ALIVE;
+	if (philos->state != DEAD)
+		philos->state = ALIVE;
 	pthread_mutex_unlock(philos->locks.lstate);
 	while (1)
 	{

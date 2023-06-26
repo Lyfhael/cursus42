@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:32:26 by hateisse          #+#    #+#             */
-/*   Updated: 2023/06/01 20:39:19 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/06/26 08:11:17 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	declare_death(t_philos *philos, t_ts current_ts)
 	if (!has_someone_died(philos))
 	{
 		if (philos->start_ts == 0)
-			printf("%s%d%s\t", LGREY, 0, NC);
+			printf("%s%d%s\t", LGREY, philos->philo_params.time_to_die, NC);
 		else
 			printf("%s%llu%s\t", LGREY, (current_ts - philos->start_ts), NC);
 		printf("%d died\n", philos->id);
@@ -58,7 +58,8 @@ bool	is_dead(t_philos *philos)
 	t_ts	current_ts;
 
 	pthread_mutex_lock(philos->locks.lstate);
-	if (philos->state == STARTING || has_exited(philos))
+	if (philos->state == STARTING || philos->state == READY
+		|| has_exited(philos))
 		return (pthread_mutex_unlock(philos->locks.lstate), false);
 	else if (philos->state == DEAD)
 		return (pthread_mutex_unlock(philos->locks.lstate), true);
