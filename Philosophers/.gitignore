@@ -1,6 +1,0 @@
-*.a
-*.o
-*.d
-philo/.build
-philo/.*
-philo/philo
