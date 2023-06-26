@@ -6,7 +6,7 @@
 /*   By: hateisse <hateisse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:20:01 by hateisse          #+#    #+#             */
-/*   Updated: 2023/06/01 20:26:23 by hateisse         ###   ########.fr       */
+/*   Updated: 2023/06/01 20:42:16 by hateisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	loop_check_program_can_end(t_philos *philos, t_philo_params pparams)
 			return ;
 		philos = philos->right;
 	}
-	usleep(500);
+	more_accurate_usleep(2);
 }
 
 int	main(int argc, char **argv)
@@ -68,9 +68,9 @@ int	main(int argc, char **argv)
 		return (FAILURE);
 	else if (init_philos(&philos, philo_params) == false)
 		return (FAILURE);
-	// else if (launch_philos(philos, philo_params) == false)
-	// 	return (FAILURE);
-	// loop_check_program_can_end(philos, philo_params);
+	else if (launch_philos(philos, philo_params) == false)
+		return (FAILURE);
+	loop_check_program_can_end(philos, philo_params);
 	philos_ls_free(&philos);
 	return (SUCCESS);
 }
